@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Serviços Contábeis - Estrutura de Atendimento</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .doubt-highlight {
+            background: linear-gradient(120deg, #fef3cd 0%, #fef3cd 100%);
+            border-left: 4px solid #f59e0b;
+            position: relative;
+        }
+        .doubt-highlight::before {
+            content: "?";
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f59e0b;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .tier-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        .tier-premium { border-top: 4px solid #6366f1; }
+        .tier-gold { border-top: 4px solid #f59e0b; }
+        .tier-silver { border-top: 4px solid #6b7280; }
+        .tier-bronze { border-top: 4px solid #92400e; }
+        .tier-sleep { border-top: 4px solid #374151; }
+        
+        @media print {
+            body { font-size: 12px; }
+            .tier-card { break-inside: avoid; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-chart-line mr-3 text-blue-600"></i>
+                Planos de Serviços Contábeis
+            </h1>
+            <p class="text-lg text-gray-600">Estrutura de Atendimento por Categoria</p>
+        </div>
+
+        <!-- Resumo Comparativo -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-balance-scale mr-2 text-blue-600"></i>
+                Resumo Comparativo dos Planos
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold">Plano</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold">Honorários Mensais</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold">Balancete</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold">Reuniões</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left font-semibold">Visitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-purple-50">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-purple-800">DIAMANTE</td>
+                            <td class="border border-gray-300 px-4 py-2">Acima de R$ 10.000</td>
+                            <td class="border border-gray-300 px-4 py-2">Mensal (data fixada)</td>
+                            <td class="border border-gray-300 px-4 py-2">Mensal/Bimestral</td>
+                            <td class="border border-gray-300 px-4 py-2">Anual</td>
+                        </tr>
+                        <tr class="bg-blue-50">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-blue-800">PLATINA</td>
+                            <td class="border border-gray-300 px-4 py-2">R$ 5.000 - R$ 10.000</td>
+                            <td class="border border-gray-300 px-4 py-2">Mensal</td>
+                            <td class="border border-gray-300 px-4 py-2">Trimestral</td>
+                            <td class="border border-gray-300 px-4 py-2">Anual</td>
+                        </tr>
+                        <tr class="bg-yellow-50">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-yellow-800">OURO</td>
+                            <td class="border border-gray-300 px-4 py-2">R$ 1.500 - R$ 4.000</td>
+                            <td class="border border-gray-300 px-4 py-2">Bimestral</td>
+                            <td class="border border-gray-300 px-4 py-2">Anual</td>
+                            <td class="border border-gray-300 px-4 py-2">Sob demanda</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-gray-800">PRATA</td>
+                            <td class="border border-gray-300 px-4 py-2">Abaixo de R$ 1.500</td>
+                            <td class="border border-gray-300 px-4 py-2">Bimestral</td>
+                            <td class="border border-gray-300 px-4 py-2">Anual</td>
+                            <td class="border border-gray-300 px-4 py-2">Sob demanda</td>
+                        </tr>
+                        <tr class="bg-orange-50">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-orange-800">BRONZE</td>
+                            <td class="border border-gray-300 px-4 py-2">R$ 450 - R$ 1.700</td>
+                            <td class="border border-gray-300 px-4 py-2">Bimestral</td>
+                            <td class="border border-gray-300 px-4 py-2">Anual</td>
+                            <td class="border border-gray-300 px-4 py-2">Não incluso</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <td class="border border-gray-300 px-4 py-2 font-semibold text-gray-700">SLEEP</td>
+                            <td class="border border-gray-300 px-4 py-2">Manutenção básica</td>
+                            <td class="border border-gray-300 px-4 py-2">Não aplicável</td>
+                            <td class="border border-gray-300 px-4 py-2">Não aplicável</td>
+                            <td class="border border-gray-300 px-4 py-2">Não aplicável</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Detalhamento dos Planos -->
+        <div class="grid gap-8">
+            <!-- DIAMANTE -->
+            <div class="tier-card tier-premium bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-gem text-3xl text-purple-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-purple-800">DIAMANTE</h2>
+                    <span class="ml-auto bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Premium</span>
+                </div>
+                <div class="mb-4 p-4 bg-purple-50 rounded-lg">
+                    <p class="text-purple-800 font-semibold">💰 Honorários: Acima de R$ 10.000 mensais (individual ou grupo)</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-calculator mr-2 text-blue-600"></i>Fiscal e Contábil
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Balancete Mensal com data fixada</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Reunião mensal ou bimestral</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI Contábil</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Auditorias anuais nas áreas com serviço programado</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Revisão tributária anual com serviço programado</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-users mr-2 text-green-600"></i>Departamento Pessoal
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI da Folha ou relatório de gestão de RH</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Portal do Empregado</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Arquivo Crédito em conta para folha</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de prazos de contratos</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Documentos para processos judiciais</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de vencimento de periódicos</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Auditoria trabalhista?</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-red-600"></i>Legalização & Relacionamento
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>IBAMA, alvarás, CND's</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Visita comercial anual</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Pesquisa de satisfação semestral</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLATINA -->
+            <div class="tier-card tier-premium bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-award text-3xl text-blue-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-blue-800">PLATINA</h2>
+                    <span class="ml-auto bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Alto Padrão</span>
+                </div>
+                <div class="mb-4 p-4 bg-blue-50 rounded-lg">
+                    <p class="text-blue-800 font-semibold">💰 Honorários: R$ 5.000 - R$ 10.000 mensais</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-calculator mr-2 text-blue-600"></i>Fiscal/Contábil
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Balancete mensal</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI Contábil</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Reunião trimestral</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Auditoria fiscal?</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Revisão tributária e contábil anual</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-users mr-2 text-green-600"></i>Departamento Pessoal
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI Folha ou relatório de gestão de RH</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Portal do Empregado</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Arquivo de crédito em conta</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de prazos de contratos</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de vencimentos de periódicos</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Auditoria trabalhista?</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-red-600"></i>Legalização & Relacionamento
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>CND, Alvarás</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Visita anual</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Pesquisa de satisfação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OURO -->
+            <div class="tier-card tier-gold bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-medal text-3xl text-yellow-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-yellow-800">OURO</h2>
+                    <span class="ml-auto bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Executivo</span>
+                </div>
+                <div class="mb-4 p-4 bg-yellow-50 rounded-lg">
+                    <p class="text-yellow-800 font-semibold">💰 Honorários: R$ 1.500 - R$ 4.000 mensais</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-calculator mr-2 text-blue-600"></i>Fiscal/Contábil
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Balancete Bimestral</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Reunião anual</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">BI de Simples Nacional?</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Análise da movimentação financeira</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Análise tributária anual</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Auditoria Fiscal anual</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-users mr-2 text-green-600"></i>Departamento Pessoal
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI Folha ou relatório de gestão de RH</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Arquivo de crédito em conta</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Auditoria anual</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de prazos de contrato</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-red-600"></i>Legalização & Relacionamento
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Acompanhamento de CND's</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Pesquisa semestral de satisfação</li>
+                            <li class="flex items-start"><i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>Visita somente sob demanda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRATA -->
+            <div class="tier-card tier-silver bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-trophy text-3xl text-gray-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-gray-800">PRATA</h2>
+                    <span class="ml-auto bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">Padrão</span>
+                </div>
+                <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-gray-800 font-semibold">💰 Honorários: Abaixo de R$ 1.500</p>
+                    <p class="text-sm text-gray-600 mt-1">*Operações que não se enquadram no Rocket (rateio de sócios, apurações diferenciadas de ICMS)</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-calculator mr-2 text-blue-600"></i>Fiscal/Contábil
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Balancete Bimestral</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI do simples (apenas com guia de pgto)</li>
+                            <li class="doubt-highlight p-2 rounded ml-4">Controle de movimentação financeira?</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Reunião anual</li>
+                            <li class="flex items-start"><i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>Auditorias sob demanda</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-users mr-2 text-green-600"></i>Departamento Pessoal
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>BI da folha (+10 emp.) ou relatório (até 9)</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Controle de prazos de contratos</li>
+                            <li class="flex items-start"><i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>Auditoria trabalhista sob demanda</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-red-600"></i>Legalização & Relacionamento
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Acompanhamento CND</li>
+                            <li class="flex items-start"><i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>Visita sob demanda</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Pesquisa de satisfação anual</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRONZE -->
+            <div class="tier-card tier-bronze bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-certificate text-3xl text-orange-700 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-orange-800">BRONZE</h2>
+                    <span class="ml-auto bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">Simples Nacional</span>
+                </div>
+                <div class="mb-4 p-4 bg-orange-50 rounded-lg">
+                    <p class="text-orange-800 font-semibold">💰 Honorários: R$ 450 - R$ 1.700 mensais</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-list-check mr-2 text-blue-600"></i>Serviços Inclusos
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Apuração de impostos e entrega de guias</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Demonstrativo do Simples Nacional</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Relatório de fechamento contábil (Contabit)</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Folha de pagamento - contribuições e impostos</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Relatórios adicionais de folha (Contabit)</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Balancetes bimensais e análise vertical</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-handshake mr-2 text-green-600"></i>Acompanhamento
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Movimentação financeira</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Análise anual do regime tributário</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Acompanhamento mensal das CND's</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Reunião Anual</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-1"></i>Pesquisa de satisfação por telefone anual</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLEEP -->
+            <div class="tier-card tier-sleep bg-white rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-pause-circle text-3xl text-gray-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-gray-700">SLEEP</h2>
+                    <span class="ml-auto bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">Empresas Paralisadas</span>
+                </div>
+                <div class="mb-4 p-4 bg-gray-100 rounded-lg">
+                    <p class="text-gray-700 font-semibold">🏢 Empresas paralisadas ou pré-operacionais sem faturamento</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                        <h4 class="font-semibold text-yellow-800 mb-2 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>Recomendações Importantes
+                        </h4>
+                        <ul class="space-y-2 text-sm text-yellow-700">
+                            <li class="flex items-start"><i class="fas fa-arrow-right mr-2 mt-1"></i>Manter informações mensais enviadas a órgãos públicos</li>
+                            <li class="flex items-start"><i class="fas fa-arrow-right mr-2 mt-1"></i>Com movimentação: abrir OS para dep. financeiro revisar honorários</li>
+                            <li class="flex items-start"><i class="fas fa-arrow-right mr-2 mt-1"></i>Atividades extras requerem OS (honorário cobre apenas manutenção)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pontos de Dúvida em Destaque -->
+        <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h2 class="text-2xl font-semibold text-yellow-800 mb-4 flex items-center">
+                <i class="fas fa-question-circle mr-3"></i>
+                Pontos que Necessitam Esclarecimento
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-yellow-800 mb-3">Definições Necessárias:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="doubt-highlight p-2 rounded">Como seriam as "auditorias anuais nas áreas com serviço programado" (Diamante)?</li>
+                        <li class="doubt-highlight p-2 rounded">O que constitui a "Revisão tributária e contábil anual" (Platina)?</li>
+                        <li class="doubt-highlight p-2 rounded">Especificações do "BI de Simples Nacional" (Ouro)</li>
+                        <li class="doubt-highlight p-2 rounded">Abrangência do "Controle de movimentação financeira" (Prata)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-yellow-800 mb-3">Confirmações Pendentes:</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="doubt-highlight p-2 rounded">Inclusão de "Auditoria trabalhista" em múltiplos planos</li>
+                        <li class="doubt-highlight p-2 rounded">Definição de "Auditoria fiscal" (Platina)</li>
+                        <li class="doubt-highlight p-2 rounded">Critérios para serviços "sob demanda"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-sm text-gray-500">
+            <p>Documento gerado para análise e estruturação dos planos de serviços contábeis</p>
+        </div>
+    </div>
+</body>
+</html>
